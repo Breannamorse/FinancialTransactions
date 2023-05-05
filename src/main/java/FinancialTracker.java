@@ -10,7 +10,6 @@ public class FinancialTracker {
     static Scanner scanner = new Scanner(System.in);
 
 
-
     private static ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     private static final String FILE_NAME = "transactions.csv";
     private static final String DATE_FORMAT = "yyyy-MM-dd";
@@ -18,7 +17,7 @@ public class FinancialTracker {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern(TIME_FORMAT);
     private static Object totalAmount;
-   ;
+    ;
 
     public static void main(String[] args) throws FileNotFoundException {
         loadTransactions("transactions.csv");
@@ -62,7 +61,7 @@ public class FinancialTracker {
         String line;
 
         Scanner scanner = new Scanner(new FileInputStream(fileName));
-        while (scanner.hasNext()){
+        while (scanner.hasNext()) {
             line = scanner.nextLine();
             String[] parts = line.split("\\|");
             LocalDate date;
@@ -91,31 +90,30 @@ public class FinancialTracker {
 
 
         try {
-            System.out.println("Enter date: ") ;
+            System.out.println("Enter date: ");
             LocalDate date = LocalDate.parse(scanner.nextLine());
-            System.out.println("Enter time: " );
+            System.out.println("Enter time: ");
             String time = scanner.nextLine();
-            System.out.println("Enter vendor: " );
+            System.out.println("Enter vendor: ");
             String vendor = scanner.nextLine();
             System.out.println("Enter amount: ");
             Double amount = scanner.nextDouble();
             System.out.println("Enter description: ");
             String description = scanner.next();
-            System.out.println("Deposit added successfully! " );
+            System.out.println("Deposit added successfully! ");
 
             Transaction depositInfo = new Transaction(date, time, description, vendor, amount);
             transactions.add(depositInfo);
             String filepath = "transactions.csv";
             //FileWriter fileWriter = new FileWriter()
-            FileWriter fileWriter =new FileWriter(filepath, true);
+            FileWriter fileWriter = new FileWriter(filepath, true);
             BufferedWriter BW = new BufferedWriter(fileWriter);
-            BW.write(depositInfo.getDate()+"\\|" + depositInfo.getTime()+"\\|" + depositInfo.getDescription()+"\\|"+ depositInfo.getVendor()+"\\|" + depositInfo.getAmount());
+            BW.write(depositInfo.getDate() + "\\|" + depositInfo.getTime() + "\\|" + depositInfo.getDescription() + "\\|" + depositInfo.getVendor() + "\\|" + depositInfo.getAmount());
             BW.newLine();
 
 // close the writer
             BW.close();
             // fileWriter = new FileWriter(filepath,true);
-
 
 
         } catch (IOException e) {
@@ -221,15 +219,13 @@ public class FinancialTracker {
 
     private static void displayLedger() {
         System.out.println("Here is all your transactions");
-        if (transactions.size() == 0 ) {
+        if (transactions.size() == 0) {
             System.out.println("You have no transactions");
-        }
-        else {
-            for (Transaction transaction: transactions ){
+        } else {
+            for (Transaction transaction : transactions) {
                 System.out.println(transaction.getDate() + "|" + transaction.getTime() + "|" + transaction.getDescription()
-                 + "|" + transaction.getVendor() + "|" + transaction.getAmount());
+                        + "|" + transaction.getVendor() + "|" + transaction.getAmount());
             }
-
 
 
         }
@@ -240,11 +236,10 @@ public class FinancialTracker {
 
     private static void displayDeposits() {
         System.out.println("Here is all your transactions");
-        if (transactions.size() == 0 ) {
+        if (transactions.size() == 0) {
             System.out.println("You have no transactions");
-        }
-        else {
-            for (Transaction transaction: transactions ) {
+        } else {
+            for (Transaction transaction : transactions) {
                 if (transaction.getAmount() > 0) {
                     System.out.println(transaction.getDate() + "|" + transaction.getTime() + "|" + transaction.getDescription()
                             + "|" + transaction.getVendor() + "|" + transaction.getAmount());
@@ -260,10 +255,9 @@ public class FinancialTracker {
 
     private static void displayPayments() {
         System.out.println("Here is all your transactions");
-        if (transactions.size() == 0 ) {
+        if (transactions.size() == 0) {
             System.out.println("You have no transactions");
-        }
-        else {
+        } else {
             for (Transaction transaction : transactions) {
                 if (transaction.getAmount() < 0) {
 
@@ -323,9 +317,9 @@ public class FinancialTracker {
 
                     }
                     break;
-                    // Generate a report for all transactions within the previous month,
-                    // including the date, vendor, and amount for each transaction.
-                    // The report should include a total of all transaction amounts for the month.
+                // Generate a report for all transactions within the previous month,
+                // including the date, vendor, and amount for each transaction.
+                // The report should include a total of all transaction amounts for the month.
                 case "3":
                     for (Transaction transaction : transactions) {
                         LocalDate date = LocalDate.now();
@@ -338,15 +332,15 @@ public class FinancialTracker {
 
                     }
                     break;
-                    // Generate a report for all transactions within the current year,
-                    // including the date, vendor, and amount for each transaction.
-                    // The report should include a total of all transaction amounts for the year.
+                // Generate a report for all transactions within the current year,
+                // including the date, vendor, and amount for each transaction.
+                // The report should include a total of all transaction amounts for the year.
 
                 case "4":
                     for (Transaction transaction : transactions) {
                         LocalDate date = LocalDate.now();
 
-                        if (transaction.getDate().getYear() == date.getYear() -1 ) {
+                        if (transaction.getDate().getYear() == date.getYear() - 1) {
 
                             System.out.println(transaction.getDate() + "|" + transaction.getTime() + "|" + transaction.getDescription()
                                     + "|" + transaction.getVendor() + "|" + transaction.getAmount());
@@ -354,25 +348,26 @@ public class FinancialTracker {
 
                     }
                     break;
-                    // Generate a report for all transactions within the previous year,
-                    // including the date, vendor, and amount for each transaction.
-                    // The report should include a total of all transaction amounts for the year.
+                // Generate a report for all transactions within the previous year,
+                // including the date, vendor, and amount for each transaction.
+                // The report should include a total of all transaction amounts for the year.
                 case "5":
                     for (Transaction transaction : transactions) {
 
                         if (transaction.getVendor() == transaction.getVendor())
-                        
-                        System.out.println(transaction.getDate() + "|" + transaction.getTime() + "|" + transaction.getDescription()
+
+                            System.out.println(transaction.getDate() + "|" + transaction.getTime() + "|" + transaction.getDescription()
                                     + "|" + transaction.getVendor() + "|" + transaction.getAmount());
 
-                        System.out.println("Transactions for vendor: " + transaction.getVendor()); {
+                        System.out.println("Transactions for vendor: " + transaction.getVendor());
+                        {
                         }
 
                     }
                     break;
-                    // Prompt the user to enter a vendor name, then generate a report for all transactions
-                    // with that vendor, including the date, vendor, and amount for each transaction.
-                    // The report should include a total of all transaction amounts for the vendor.
+                // Prompt the user to enter a vendor name, then generate a report for all transactions
+                // with that vendor, including the date, vendor, and amount for each transaction.
+                // The report should include a total of all transaction amounts for the vendor.
                 case "0":
                     running = false;
                 default:
@@ -384,12 +379,6 @@ public class FinancialTracker {
 
 
     private static void filterTransactionsByDate(LocalDate startDate, LocalDate endDate) {
-        Scanner scanner1 = new Scanner(System.in);
-        filterTransactionsByDate(startDate, endDate);
-
-         for (Transaction transaction : transactions) {
-             if (transaction)
-         }
 
 
         // This method filters the transactions by date and prints a report to the console.
@@ -400,13 +389,34 @@ public class FinancialTracker {
     }
 
     private static void filterTransactionsByVendor(String vendor) {
+        // Prompt the user for a vendor name
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter vendor name: ");
+        String vendorName = scanner.nextLine();
+
+        // Filter transactions by vendor name and print the report
+        System.out.println("Filtered transactions for vendor: " + vendor);
+
+
+        for (Transaction transaction : transactions) {
+            if (transaction.getVendor() == transaction.getVendor())
+            System.out.println(transaction.getDate() + "|" + transaction.getTime() + "|" + transaction.getDescription()
+                    + "|" + transaction.getVendor() + "|" + transaction.getAmount());
+
+            }
+        }
+    }
+
+
+
+
+
         // This method filters the transactions by vendor and prints a report to the console.
         // It takes one parameter: vendor, which represents the name of the vendor to filter by.
         // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
         // Transactions with a matching vendor name are printed to the console.
         // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
-    }
-}
+
 
 
 
